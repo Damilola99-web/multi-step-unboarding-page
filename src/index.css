@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.griddev {
+    grid-template-columns: 2fr 3fr;
+}
+
+body {
+    overflow-x: hidden !important;
+}
+
+.chexcbox {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+
+.pentagon {
+	position: relative;
+	height: 52px;
+	clip-path: polygon( 50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%);
+}
+
+.background {
+    background: linear-gradient(0deg, rgba(21, 101, 216, 0.9), rgba(21, 101, 216, 0.9)), url('./assets/createtravel-tv-qS9W_cuRKfI-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

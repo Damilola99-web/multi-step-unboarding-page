@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import QuoteDesign from '../components/QuoteDesign';
 import GO from '../assets/Union (1).png';
 import USER from '../assets/user.png';
 import BRIEFCASE from '../assets/Vector (1).png';
 import POLYGON from '../assets/Polygon 2.svg';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state/index';
+import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 
 export default function PageA({ setCurrentPage, currentPage }) {
+	const dispatch = useDispatch();
+	const { clearUser } = bindActionCreators(actionCreators, dispatch);
+
+	const animationVariant = {
+		initial : {
+			 x: -200 
+		},
+		animate : {
+			 x: 0,
+			 transition : {
+				duration : 1
+			 }
+		}
+	}
+
+	useEffect(() => {
+		clearUser();
+	}, []);
+
 	return (
 		<div className=" w-screen lg:grid griddev h-screen">
 			<QuoteDesign />
@@ -20,12 +43,21 @@ export default function PageA({ setCurrentPage, currentPage }) {
 
 				<div className=" my-20 lg:my-10 lg:p-10 flex flex-col lg:max-w-[520px]">
 					<p className=" text-xl lg:text-2xl font-bold">Join Us!</p>
-					<p className=" text-lg font-semibold text-gray-400 mt-2 mb-4">
+					<motion.h2
+					variants={animationVariant}
+						initial='initial'
+						animate='animate'
+						className=" text-lg font-semibold text-gray-400 mt-2 mb-4"
+					>
 						To begin this journey, tell us what type of account you'd be opening.
-					</p>
+					</motion.h2>
 
 					<div className="  w-full flex flex-col space-y-6">
-						<div
+						<motion.div
+						initial={{scale: 0}}
+						animate={{scale: 1}}
+						transition={{duration: 0.5}}
+							whileHover={{ scale: 1.1 }}
 							onClick={() => setCurrentPage(currentPage + 1)}
 							className=" group cursor-pointer w-full flex lg:justify-between items-center p-5 space-x-6 shadow-lg rounded-lg border-2 hover:bg-blue-300/10 border-transparent hover:shadow-sm hover:border-blue-600"
 						>
@@ -39,9 +71,12 @@ export default function PageA({ setCurrentPage, currentPage }) {
 								</p>
 							</div>
 							<img className=" hidden group-hover:inline-block" src={GO} alt="" />
-						</div>
-						<div
-							onClick={() => setCurrentPage(currentPage + 1)}
+						</motion.div>
+						<motion.div
+						initial={{scale: 0}}
+						animate={{scale: 1}}
+						transition={{duration: 0.5}}
+							whileHover={{ scale: 1.1 }}
 							className=" group cursor-pointer w-full flex lg:justify-between items-center p-5 space-x-6 shadow-lg rounded-lg border-2 hover:bg-blue-300/10 border-transparent hover:shadow-sm hover:border-blue-600"
 						>
 							<div className=" relative hidden md:block lg:block">
@@ -55,7 +90,7 @@ export default function PageA({ setCurrentPage, currentPage }) {
 								</p>
 							</div>
 							<img className=" hidden group-hover:inline-block" src={GO} alt="" />
-						</div>
+						</motion.div>
 					</div>
 				</div>
 			</div>
